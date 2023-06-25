@@ -8,10 +8,22 @@ function s.initial_effect(c)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
 	e1:SetCountLimit(1,id)
-	e1:SetHintTiming(0,TIMING_MAIN_END)
 	e1:SetTarget(s.thtg)
 	e1:SetOperation(s.thop)
 	c:RegisterEffect(e1)
+	local e2=Effect.CreateEffect(c)
+	e2:SetType(EFFECT_TYPE_SINGLE)
+	e2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
+	e2:SetCode(EFFECT_ADD_EXTRA_TRIBUTE)
+	e2:SetTargetRange(LOCATION_GRAVE,0)
+	e2:SetTarget(aux.TargetBoolFunction(Card.IsType,TYPE_MONSTER))
+	local e3=Effect.CreateEffect(c)
+	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_GRANT)
+	e3:SetRange(LOCATION_SZONE)
+	e3:SetTargetRange(LOCATION_HAND,0)
+	e3:SetTarget(aux.TargetBoolFunction(Card.IsMonster))
+	e3:SetLabelObject(e2)
+	c:RegisterEffect(e3)
 end
 s.listed_series={SET_MONARCH}
 --(e1)
@@ -35,18 +47,5 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		local tg=sg:RandomSelect(1-tp,1)
 		e:SetLabelObject(g:GetFirst())
 		Duel.SendtoHand(tg,nil,REASON_EFFECT)
-		local c=e:GetHandler()
-		if c:IsRelateToEffect(e) then
-	        if e:GetLabelObject():CardIsType(TYPE_MONSTER) then
-	        local e2=Effect.CreateEffect(c)
-	        e2:SetCategory(CATEGORY_SPSUMMON_PROC)
-	        e2:SetType(EFFECT_TYPE_FIELD)
-	        e2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
-	        e2:SetCode(EFFECT_ADD_EXTRA_TRIBUTE)
-	        e2:SetTarget(aux.TargetBoolFunction(Card.IsMonster,Card.IsAbleToRemoveAsCost,Card.IsLocation(LOCATION_GRAVE)))
-	        e2:SetReset(RESET_ENDMAIN)
-	        c:RegisterEffect(e2)
-	       end
-	    end
 	end
 end
