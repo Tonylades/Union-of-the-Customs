@@ -17,16 +17,17 @@ Se você acabou de criar, ou ele está vazio, copie e cole o seguinte:
 
 ```
 {
-	"repos": [
-		{
-    "url": "https://github.com/Tonylades/Union-of-the-Customs.git",    
-    "repo_name": "Union of the Customs",
-		"repo_path": "./repositories/UnionCustoms",
-		"should_update": true,
-		"should_read": true
-		}
-	]
+	"repos":[
+        {
+        "url": "https://github.com/Tonylades/Union-of-the-Customs.git",    
+        "repo_name": "Union of the Customs",
+        "repo_path": "./repositories/UnionCustoms",
+        "should_update": true,
+        "should_read": true
+        }
+    ]
 }
+
 ```
 
 - Passo 4:
