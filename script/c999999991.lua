@@ -54,13 +54,14 @@ function s.initial_effect(c)
 	e5:SetOperation(s.damop)
 	c:RegisterEffect(e5)
 end
+s.listed_series={0xa00}
 --(1)
 function s.efilter(e,te)
 	return te:GetOwner()~=e:GetOwner()
 end
 --(4)
 function s.setfilter(c)
-	return c:IsSpellTrap() and c:IsSSetable()
+	return c:IsSpellTrap() and c:IsSetCard(0xa00) and c:IsSSetable()
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil) end
