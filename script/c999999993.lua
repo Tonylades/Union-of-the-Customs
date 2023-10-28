@@ -32,20 +32,16 @@ end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_ONFIELD+LOCATION_GRAVE) and chkc:IsAbleToRemove() end
 	if chk==0 then return Duel.IsExistingTarget(Card.IsAbleToRemove,tp,0,LOCATION_ONFIELD+LOCATION_GRAVE,1,nil) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-	local tg=Duel.SelectTarget(tp,Card.IsAbleToRemove,tp,0,LOCATION_ONFIELD+LOCATION_GRAVE,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,g,1,0,0)
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp,chk)
-	local tc=Duel.GetFirstTarget()
-	if not tc:IsRelateToEffect(e) or Duel.Remove(tc,POS_FACEUP,REASON_EFFECT)<1 then return end
-	local rg=Duel.GetMatchingGroup(Card.IsAbleToRemove,tp,0,LOCATION_ONFIELD,nil)
-    Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
+      local rg=Duel.GetMatchingGroup(Card.IsAbleToRemove,tp,0,LOCATION_ONFIELD+LOCATION_GRAVE,nil)
+      Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 		local g=rg:Select(tp,1,1,nil)
 		if #g>0 then
 			Duel.HintSelection(g,true)
 			Duel.Remove(g,POS_FACEUP,REASON_EFFECT)
-			end
+		end
 end
 --(2)
 function s.thtg2(e,tp,eg,ep,ev,re,r,rp,chk)
