@@ -1,4 +1,3 @@
-
 --Sea Power
 local s,id=GetID()
 function s.initial_effect(c)
@@ -29,7 +28,7 @@ function s.plfilter(c,tp)
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(s.plfilter,tp,LOCATION_DECK,0,nil,tp)
-	if #g>0 and Duel.SelectYesNo(tp,aux.Stringid(id,0)) then
+	if #g>0 and Duel.SelectYesNo(tp,aux.Stringid(id,1)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
 		local tc=g:Select(tp,1,1,nil):GetFirst()
 		if not tc then return end
