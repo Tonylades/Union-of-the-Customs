@@ -46,7 +46,7 @@ function s.tgop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.thfilter(c,code)
-	return c:IsCode(990000010,50383626) and c:IsAbleToHand()
+	return c:IsCode(733500021,50383626) and c:IsAbleToHand()
 end
 function s.rmfilter(c,tp)
 	return c:IsMonster() and c:IsAbleToRemoveAsCost() and Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,c,c:GetOriginalCode())
