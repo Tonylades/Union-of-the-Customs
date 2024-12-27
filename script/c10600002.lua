@@ -118,7 +118,7 @@ end
 
 function s.tgop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-	local g=Duel.SelectMatchingCard(tp,s.tgfilter,tp,LOCATION_GRAVE+LOCATION_ONFIELD,0,1,1,e:GetHandler())
+	local g=Duel.SelectMatchingCard(tp,s.tgfilter,tp,LOCATION_GRAVE|LOCATION_ONFIELD,0,1,1,e:GetHandler())
 	local tc=g:GetFirst()
 	if tc and Duel.Remove(tc,POS_FACEUP,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_REMOVED) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
